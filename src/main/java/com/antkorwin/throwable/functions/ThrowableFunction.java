@@ -7,11 +7,11 @@ import java.util.function.Function;
 /**
  * Java {@link Function} with an ability to throw checked exceptions in the body code
  *
- * @param <T> the type of the input for function
- * @param <R> the type of the result
+ * @param <InputArgumentT> the type of the input for function
+ * @param <ResultT> the type of the result
  */
 @FunctionalInterface
-public interface ThrowableFunction<T, R> extends Function<T, R> {
+public interface ThrowableFunction<InputArgumentT, ResultT> extends Function<InputArgumentT, ResultT> {
 
     /**
      * This method can throw a checked exception
@@ -20,7 +20,7 @@ public interface ThrowableFunction<T, R> extends Function<T, R> {
      * @return the result of the function invocation
      * @throws Throwable this function may throw an exception
      */
-    R throwableApply(T t) throws Throwable;
+    ResultT throwableApply(InputArgumentT t) throws Throwable;
 
     /**
      * This method handle all exceptions and wrap checked exceptions
@@ -30,7 +30,7 @@ public interface ThrowableFunction<T, R> extends Function<T, R> {
      * @return the result of the function invocation
      */
     @Override
-    default R apply(T t) {
+    default ResultT apply(InputArgumentT t) {
         try {
             return throwableApply(t);
         } catch (RuntimeException | Error exception) {

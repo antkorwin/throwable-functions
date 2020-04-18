@@ -11,7 +11,7 @@ import java.util.function.Consumer;
  * @author Korovin Anatoliy
  */
 @FunctionalInterface
-public interface ThrowableConsumer<T> extends Consumer<T> {
+public interface ThrowableConsumer<InputArgumentT> extends Consumer<InputArgumentT> {
 
     /**
      * perform this method on the given argument,
@@ -20,7 +20,7 @@ public interface ThrowableConsumer<T> extends Consumer<T> {
      * @param argument the input argument
      * @throws Throwable may throw checked exception
      */
-    void throwableAccept(T argument) throws Throwable;
+    void throwableAccept(InputArgumentT argument) throws Throwable;
 
     /**
      * by default this method catches checked exceptions and wrap it
@@ -29,7 +29,7 @@ public interface ThrowableConsumer<T> extends Consumer<T> {
      * @param argument the input argument
      */
     @Override
-    default void accept(T argument) {
+    default void accept(InputArgumentT argument) {
         try {
             throwableAccept(argument);
         } catch (RuntimeException | Error exception) {

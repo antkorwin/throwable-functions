@@ -7,10 +7,10 @@ import java.util.function.Supplier;
 /**
  * Java {@link Supplier} which can throw a checked exception.
  *
- * @param <TypeT> type of returned result
+ * @param <ResultT> type of returned result
  */
 @FunctionalInterface
-public interface ThrowableSupplier<TypeT> extends Supplier<TypeT> {
+public interface ThrowableSupplier<ResultT> extends Supplier<ResultT> {
 
     /**
      * This method returns the value of expected types
@@ -18,7 +18,7 @@ public interface ThrowableSupplier<TypeT> extends Supplier<TypeT> {
      * @return value of type TypeT
      * @throws Throwable this method may throw a checked exception
      */
-    TypeT throwableGet() throws Throwable;
+    ResultT throwableGet() throws Throwable;
 
     /**
      * This method handle a checked exception and wrap it
@@ -27,7 +27,7 @@ public interface ThrowableSupplier<TypeT> extends Supplier<TypeT> {
      * @return the result of supplier invocation
      */
     @Override
-    default TypeT get() {
+    default ResultT get() {
         try {
             return throwableGet();
         } catch (RuntimeException | Error exception) {
