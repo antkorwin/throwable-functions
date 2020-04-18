@@ -8,6 +8,8 @@ import java.util.function.Supplier;
  * Java {@link Supplier} which can throw a checked exception.
  *
  * @param <ResultT> type of returned result
+ *
+ * @author Korovin Anatoliy
  */
 @FunctionalInterface
 public interface ThrowableSupplier<ResultT> extends Supplier<ResultT> {

@@ -8,7 +8,9 @@ import java.util.function.Function;
  * Java {@link Function} with an ability to throw checked exceptions in the body code
  *
  * @param <InputArgumentT> the type of the input for function
- * @param <ResultT> the type of the result
+ * @param <ResultT>        the type of the result
+ *
+ * @author Korovin Anatoliy
  */
 @FunctionalInterface
 public interface ThrowableFunction<InputArgumentT, ResultT> extends Function<InputArgumentT, ResultT> {
