@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 /**
  * Created on 18/04/2020
  * <p>
- * Java {@link Consumer} which can throw an checked exception, and
+ * Java {@link Consumer} which can throw a checked exception, and
  * this exception will be wrapped in the runtime exception: {@link WrappedException}
  *
  * @author Korovin Anatoliy
@@ -13,12 +13,25 @@ import java.util.function.Consumer;
 @FunctionalInterface
 public interface ThrowableConsumer<T> extends Consumer<T> {
 
-    void throwableAccept(T t) throws Throwable;
+    /**
+     * perform this method on the given argument,
+     * this method can throw a checked exception
+     *
+     * @param argument the input argument
+     * @throws Throwable may throw checked exception
+     */
+    void throwableAccept(T argument) throws Throwable;
 
+    /**
+     * by default this method catches checked exceptions and wrap it
+     * in the {@link WrappedException}
+     *
+     * @param argument the input argument
+     */
     @Override
-    default void accept(T t) {
+    default void accept(T argument) {
         try {
-            throwableAccept(t);
+            throwableAccept(argument);
         } catch (RuntimeException | Error exception) {
             throw exception;
         } catch (Throwable throwable) {
