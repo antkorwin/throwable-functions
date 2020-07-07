@@ -14,7 +14,8 @@ public class ThrowableWrapper {
 
 	/**
 	 * run code with checked exception handling
-	 * @param runnable
+	 *
+	 * @param runnable code of Runnable method to execute
 	 */
 	public static void run(ThrowableRun runnable) {
 		runnable.run();
@@ -22,6 +23,10 @@ public class ThrowableWrapper {
 
 	/**
 	 * evaluate a value of supplier with checked exception handling
+	 *
+	 * @param supplier supplier to evaluate a value
+	 * @param <ResultT> type of the result
+	 * @return the result of supplier
 	 */
 	public static <ResultT> ResultT get(ThrowableSupplier<ResultT> supplier) {
 		return supplier.get();
