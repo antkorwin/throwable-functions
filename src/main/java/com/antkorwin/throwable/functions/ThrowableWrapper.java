@@ -9,6 +9,9 @@ package com.antkorwin.throwable.functions;
  */
 public class ThrowableWrapper {
 
+	private ThrowableWrapper() {
+	}
+
 	/**
 	 * run code with checked exception handling
 	 * @param runnable
